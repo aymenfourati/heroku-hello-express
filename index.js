@@ -4,28 +4,28 @@ const app = express();
 let users = {
     1: { 
         "id" : "Dayami Huffman",
-        "WalletAdress":"0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
+        "WalletAddress":"0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
         "email": "dayami@myemail.com"
     }, 
     2: { 
         "id" : "Troy Webb",
-        "WalletAdress":"0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
+        "WalletAddress":"0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
         "email": "troy@myemail.com"
     },
     3: {
         "id" : "Jason Villegas",
-        "WalletAdress":"0x4B20993Bc481177ec7E8f571ceCaE8A9e22C02db",
+        "WalletAddress":"0x4B20993Bc481177ec7E8f571ceCaE8A9e22C02db",
         "email": "jason@myemail.com"
 
     },
     4: {
         "id" : "Amya Odom",
-        "WalletAdress":"0x78731D3Ca6b7E34aC0F824c42a7cC18A495cabaB",
+        "WalletAddress":"0x78731D3Ca6b7E34aC0F824c42a7cC18A495cabaB",
         "email": "amya@myemail.com"
     },
     5: {
         "id" : "Ari David",
-        "WalletAdress":"0x617F2E2fD72FD9D5503197092aC168c91465E7f2",
+        "WalletAddress":"0x617F2E2fD72FD9D5503197092aC168c91465E7f2",
         "email": "ari@myemail.com"
     }
   };
@@ -86,10 +86,12 @@ let users = {
   });
   
   //added this because that's all we need 
-  app.get('/users/:userId/WalletAdress', (req, res) => {
-    return res.send(users[req.params.userId].WalletAdress)
+  app.get('/users/:userId/WalletAddress', (req, res) => {
+    return res.send(users[req.params.userId].WalletAddress)
   });
-
+  app.get('/users/:userId', (req, res) => {
+    return res.send(users[req.params.userId])
+  });
 
    /* 
   app.get('/messages', (req, res) => {
