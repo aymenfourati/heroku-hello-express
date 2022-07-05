@@ -85,6 +85,12 @@ let users = {
     );
   });
   
+  //added this because that's all we need 
+  app.get('/users/:userId/WalletAdress', (req, res) => {
+    return res.send(users[req.params.userId].WalletAdress)
+  });
+
+
    /* 
   app.get('/messages', (req, res) => {
     return res.send(Object.values(messages));
@@ -98,9 +104,7 @@ let users = {
     return res.send(users[req.params.userId])
   });
 
-  app.get('/users/:userId/WalletAdress', (req, res) => {
-    return res.send(users[req.params.userId].WalletAdress)
-  });
+
 
   app.get('/users/:userId/email', (req, res) => {
     return res.send(users[req.params.userId].email)
@@ -108,7 +112,8 @@ let users = {
 
   app.get('/users/:userId/id', (req, res) => {
     return res.send(users[req.params.userId].id)
-  }); */
+  }); 
+  */
 
 
   app.listen(process.env.PORT || 3000);
