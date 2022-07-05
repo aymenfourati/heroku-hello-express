@@ -4,20 +4,15 @@ import "github.com/provable-things/ethereum-api/provableAPI_0.4.25.sol";
 contract VoteApp is usingProvable {
     address public owner;
     string[] public voteArray;
-    address public walletAddress;
+    string public walletAddress;
    event LogConstructorInitiated(string nextStep);
-   event LogPriceUpdated(address price);
+   event LogDataUpdate(string price);
    event LogNewProvableQuery(string description);
 
    function VoteApp() payable {
             owner = msg.sender;
        LogConstructorInitiated("Constructor was initiated. Call 'updatePrice()' to send the Provable Query.");
    }
-    constructor(){
-
-        owner = msg.sender;
-
-    }
 
     // commitedVote stores whether or not the voter has already commited his vote and whether or not he voted UP or DOWN
     struct commitedVote{
@@ -72,18 +67,18 @@ contract VoteApp is usingProvable {
         return(p.upvotes, p.downvotes);
 
     }
-   function __callback(bytes32 myid, address result) {
+   function __callback(bytes32 myid, string result) {
        if (msg.sender != provable_cbAddress()) revert();
        walletAddress = result;
-       LogPriceUpdated(result);
+       LogDataUpdate(result);
    }
 
-   function updatePrice() payable {
+   function fetchData() payable {
        if (provable_getPrice("URL") > this.balance) {
            LogNewProvableQuery("Provable query was NOT sent, please add some ETH to cover for the query fee");
        } else {
            LogNewProvableQuery("Provable query was sent, standing by for the answer..");
-           provable_query("URL", "json(https://heroku-hello-express.herokuapp.com/users/1/WalletAddress)");
+           provable_query("URL", "json(https://heroku-hello-express.herokuapp.com/users/1).WalletAddress");
        }
    }
 }
