@@ -44,6 +44,7 @@ let users = {
   };
 
 
+// root requests
 
   app.get('/', (req, res) => {
     return res.send('Received a GET HTTP method');
@@ -60,9 +61,10 @@ let users = {
   app.delete('/', (req, res) => {
     return res.send('Received a DELETE HTTP method');
   });
-  
 
-  /* 
+  //users requests
+
+ 
   app.get('/users', (req, res) => {
     return res.send('GET HTTP method on user resource');
   });
@@ -83,6 +85,7 @@ let users = {
     );
   });
   
+   /* 
   app.get('/messages', (req, res) => {
     return res.send(Object.values(messages));
   });
